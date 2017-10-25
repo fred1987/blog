@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //for widget and footer data
+        // for widget and footer data
         View::share([
             'myName' => 'Альфред Иванов',
             'myFullName' => 'Иванов Альфред Николаевич',

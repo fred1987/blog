@@ -1,6 +1,23 @@
 @section('header')
     <header class="header  push-down-45">
         <div class="container">
+            <div class="col-xs-12" style="margin-bottom: 15px; text-align: right; position: relative;">
+                @guest
+                    <p>Добро пожаловать, гость! <a href="/login">Авторизоваться</a></p>
+                    @else
+                        <p>Добро пожаловать, {{ Auth::user()->name }}!
+
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                Выйти
+                            </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                        @endguest
+            </div>
             <div class="logo pull-left">
                 <a href="/">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" width="352" height="140">

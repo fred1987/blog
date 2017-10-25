@@ -2,6 +2,7 @@
 
 namespace App\Http\ViewComposers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class ArticleComposer
@@ -11,7 +12,7 @@ class ArticleComposer
 
     public function __construct()
     {
-        $this->users = 7;
+        $this->users = DB::table('users')->count();
     }
 
     /**

@@ -5,7 +5,12 @@ Route::get('/', 'MainController@index')->name('main');
 Route::get('/elements', 'MainController@elements')->name('elements');
 Route::get('/about', 'MainController@about')->name('about');
 Route::get('/contacts', 'MainController@contacts')->name('contacts');
+Route::get('/registration', 'AuthController@registration')->name('registration');
 Route::get('/test/{id}', 'MainController@test')->name('test');
 
 //article controllers
 Route::get('/news/{id}', 'ArticleController@detail')->name('postDetail');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

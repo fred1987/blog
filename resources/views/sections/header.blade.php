@@ -37,6 +37,9 @@
                         <li class="">
                             <a href="/contacts" class="dropdown-toggle" data-toggle="dropdown">Обратная связь</a>
                         </li>
+                        <li class="">
+                            <a href="/registration" class="dropdown-toggle" data-toggle="dropdown">Регистрация</a>
+                        </li>
                     </ul>
                 </div>
             </nav>

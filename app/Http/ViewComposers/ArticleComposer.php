@@ -6,6 +6,14 @@ use Illuminate\View\View;
 
 class ArticleComposer
 {
+
+    protected $users;
+
+    public function __construct()
+    {
+        $this->users = 7;
+    }
+
     /**
      * Bind data to the view.
      *
@@ -14,6 +22,6 @@ class ArticleComposer
      */
     public function compose(View $view)
     {
-        $view->with(['commentCount' => '13']);
+        $view->with('userCount', $this->users);
     }
 }

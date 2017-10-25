@@ -2,29 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Includes\Interfaces\CoffeeMachineInterface;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    protected $coffee;
+    protected $coffeeMachine;
     protected $counter;
 
-    public function __construct()
+    public function __construct(CoffeeMachineInterface $coffeeMachine)
     {
-        $this->coffee = resolve('App\Includes\Interfaces\CoffeeMachineInterface');
-        $this->counter = resolve('App\Includes\Interfaces\CounterInterface');
+        $this->coffeeMachine = $coffeeMachine;
     }
 
     public function detail()
     {
         //приготовим кофе
-        $this->coffee->makeCoffee(3);
-        $this->counter->increment();
+        $this->coffeeMachine->makeCoffee(3);
 
         return view('pages.post', [
             'title' => 'Детальная страница поста',
-            'coffee' => $this->coffee->getCoffee(),
-            'counter' => $this->counter->getVal()
+            'coffee' => $this->coffeeMachine->getCoffee()
         ]);
     }
 }

@@ -23,8 +23,8 @@ class AppServiceProvider extends ServiceProvider
             'vk' => 'https://vk.com/alfred_ivanov'
         ]);
 
-        //Не хочет работать / postDetail - название роута
-        View::composer('postDetail', 'App\Http\ViewComposers\ArticleComposer');
+        // composer test
+        View::composer('*', 'App\Http\ViewComposers\ArticleComposer');
     }
 
     /**
@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         // кофе для постов блога
-        $this->app->when(\App\Http\Controllers\ArticleController::class)
+        $this->app->when('App\Http\Controllers\ArticleController')
             ->needs('App\Includes\Interfaces\CoffeeMachineInterface')
             ->give('App\Includes\Classes\RobustaCoffeeMachine');
 

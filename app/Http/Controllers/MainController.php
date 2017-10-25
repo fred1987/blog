@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Includes\Interfaces\CoffeeMachineInterface;
+use App\Includes\Interfaces\CounterInterface;
 use Illuminate\Http\Request;
 
 class mainController extends Controller
 {
-    protected $coffee;
+    protected $coffeeMachine;
     protected $counter;
 
-    public function __construct()
+    public function __construct(CoffeeMachineInterface $coffeeMachine, CounterInterface $counter)
     {
-        $this->coffee = resolve('App\Includes\Interfaces\CoffeeMachineInterface');
-        $this->counter = resolve('App\Includes\Interfaces\CounterInterface');
+        $this->coffeeMachine = $coffeeMachine;
+        $this->counter = $counter;
     }
 
     public function index()
@@ -46,15 +48,15 @@ class mainController extends Controller
     public function test(int $id)
     {
         //приготовим кофе
-        $this->coffee->makeCoffee(2);
-        $this->coffee->oneMore();
-        $this->coffee->oneMore();
-        $this->coffee->oneMore();
+        $this->coffeeMachine->makeCoffee(2);
+        $this->coffeeMachine->oneMore();
+        $this->coffeeMachine->oneMore();
+        $this->coffeeMachine->oneMore();
 
         return view('pages.test_' . $id, [
             'title' => 'Тест',
             'current_time' => myFormatDate(time()),
-            'coffee' => $this->coffee->getCoffee(),
+            'coffee' => $this->coffeeMachine->getCoffee(),
         ]);
     }
 }

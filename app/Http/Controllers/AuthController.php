@@ -44,10 +44,7 @@ class AuthController extends Controller
             ]);
 
             // если запись создана, то перенаправляем на главную и авторизовываем пользователя
-            if ($id) {
-                self::loginPost($request);
-                return redirect()->route('main');
-            }
+            if ($id) self::loginPost($request);
         }
     }
 

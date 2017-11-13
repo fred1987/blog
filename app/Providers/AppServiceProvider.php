@@ -24,7 +24,16 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         // composer test
-        View::composer('*', 'App\Http\ViewComposers\ArticleComposer');
+        View::composer(
+            [
+                'index',
+                'pages.about',
+                'pages.contacts',
+                'pages.elements',
+                'pages.registration',
+                'pages.post'
+            ],
+            'App\Http\ViewComposers\ArticleComposer');
     }
 
     /**

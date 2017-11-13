@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Includes\Interfaces\CoffeeMachineInterface;
 use App\Includes\Interfaces\CounterInterface;
+use App\Post;
+use App\Profile;
 use Illuminate\Http\Request;
 
 class mainController extends Controller
@@ -20,7 +22,8 @@ class mainController extends Controller
     public function index()
     {
         return view('index', [
-            'title' => 'Мой блог'
+            'title' => 'Мой блог',
+            'posts' => Post::all(),
         ]);
     }
 
@@ -42,21 +45,6 @@ class mainController extends Controller
     {
         return view('pages.contacts', [
             'title' => 'Обратная связь'
-        ]);
-    }
-
-    public function test(int $id)
-    {
-        //приготовим кофе
-        $this->coffeeMachine->makeCoffee(2);
-        $this->coffeeMachine->oneMore();
-        $this->coffeeMachine->oneMore();
-        $this->coffeeMachine->oneMore();
-
-        return view('pages.test_' . $id, [
-            'title' => 'Тест',
-            'current_time' => myFormatDate(time()),
-            'coffee' => $this->coffeeMachine->getCoffee(),
         ]);
     }
 }

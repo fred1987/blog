@@ -5,7 +5,7 @@
                 @guest
                     <p>Добро пожаловать, гость! <a href="/login">Авторизоваться</a></p>
                     @else
-                        <p>Добро пожаловать, {{ Auth::user()->name }}!
+                        <p>Добро пожаловать, {{ $user_name }}!
 
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -37,13 +37,6 @@
                     <ul class="navigation">
                         <li class="dropdown active">
                             <a href="/" class="dropdown-toggle" data-toggle="dropdown">Главная</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Тест</a>
-                            <ul class="navigation__dropdown">
-                                <li><a href="/test/1">test 1</a></li>
-                                <li><a href="/test/2">test 2</a></li>
-                            </ul>
                         </li>
                         <li class="">
                             <a href="/elements" class="dropdown-toggle" data-toggle="dropdown">Верстка</a>

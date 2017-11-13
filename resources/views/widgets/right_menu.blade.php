@@ -3,24 +3,19 @@
         <h6>РАЗДЕЛЫ</h6>
         <ul>
             <li>
-                <a href="#">Разработка &nbsp; <span class="widget-categories__text">(16)</span>
-                </a>
+                <a href="#">Разработка <span class="widget-categories__text"></span></a>
             </li>
             <li>
-                <a href="#">PHP &nbsp; <span class="widget-categories__text">(13)</span> </a>
+                <a href="#">PHP <span class="widget-categories__text"></span></a>
             </li>
             <li>
-                <a href="#">JavaScript &nbsp; <span class="widget-categories__text">(9)</span>
-                </a>
+                <a href="#">JavaScript <span class="widget-categories__text"></span></a>
             </li>
             <li>
-                <a href="#">Про жизнь &nbsp; <span class="widget-categories__text">(23)</span>
-                </a>
+                <a href="#">Про жизнь <span class="widget-categories__text"></span></a>
             </li>
             <li>
-                <a href="#">Путешествия &amp; Квесты &nbsp; <span
-                            class="widget-categories__text">(3)</span>
-                </a>
+                <a href="#">Путешествия <span class="widget-categories__text"></span></a>
             </li>
         </ul>
     </div>

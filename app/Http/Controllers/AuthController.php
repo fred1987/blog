@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-//use App\Http\Requests\RegisterFormRequest;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\RegisterFormRequest;
+use App\Profile;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -18,37 +17,25 @@ class AuthController extends Controller
         ]);
     }
 
-    public function registerPost(Request $request)
+    public function registerPost(RegisterFormRequest $request)
     {
-        // провалидируем входящие данные
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|min:3|max:30',
-            'email' => 'required|email|unique:users',
-            'pswd' => 'required|min:6|max:30',
-            'pswd_repeat' => 'required|same:pswd',
-            'phone' => 'required',
-            'is_accepted' => 'accepted',
+        // создадим пользователя
+        $user = User::create([
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('pswd'))
         ]);
 
-        if ($validator->fails()) {
-            // валидация не прошла, покажем ошибки
-            return redirect()->route('register')->withErrors($validator)->withInput();
-        } else {
-            // создадим запись в БД
-            $id = DB::table('users')->insertGetId([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'password' => bcrypt($request->input('pswd')),
-                'phone' => $request->input('phone'),
-                'created_at' => Carbon::createFromTimestamp(time())->format('Y-m-d H:i:s')
-            ]);
+        // создадим его профайл
+        Profile::create([
+            'user_id' => $user->id,
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone')
+        ]);
 
-            // если запись создана, то перенаправляем на главную и авторизовываем пользователя
-            if ($id) {
-                Auth::loginUsingId($id, $request->input('remember') ? true : false);
-                return redirect()->route('main');
-            }
-            //self::loginPost($request);
+        // если запись создана, то перенаправляем на главную и авторизовываем пользователя
+        if ($user->id) {
+            Auth::loginUsingId($user->id, $request->input('remember') ? true : false);
+            return redirect()->route('main');
         }
     }
 

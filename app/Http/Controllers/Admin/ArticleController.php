@@ -57,7 +57,6 @@ class ArticleController extends Controller
             'detail_text' => $request->detail_text,
             'slug' => translit($request->headline),
             'user_id' => Auth::id(),
-
         ]);
 
         if ($post) {

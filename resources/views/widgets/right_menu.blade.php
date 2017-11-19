@@ -2,21 +2,12 @@
     <div class="widget-categories  push-down-30">
         <h6>РАЗДЕЛЫ</h6>
         <ul>
-            <li>
-                <a href="#">Разработка <span class="widget-categories__text"></span></a>
-            </li>
-            <li>
-                <a href="#">PHP <span class="widget-categories__text"></span></a>
-            </li>
-            <li>
-                <a href="#">JavaScript <span class="widget-categories__text"></span></a>
-            </li>
-            <li>
-                <a href="#">Про жизнь <span class="widget-categories__text"></span></a>
-            </li>
-            <li>
-                <a href="#">Путешествия <span class="widget-categories__text"></span></a>
-            </li>
+            @foreach($articleSections as $elem)
+                <li>
+                    <a href="/?section={{ $elem['slug'] }}">{{ $elem['name'] }} <span
+                                class="widget-categories__text">{{ $elem['count'] }}</span></a>
+                </li>
+            @endforeach
         </ul>
     </div>
 @show

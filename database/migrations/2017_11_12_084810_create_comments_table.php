@@ -27,6 +27,7 @@ class CreateCommentsTable extends Migration
                 ->on('posts')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->string('user_name');
             $table->text('comment');
             $table->timestamps();
         });

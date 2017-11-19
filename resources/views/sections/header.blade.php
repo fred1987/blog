@@ -12,7 +12,6 @@
                                                      document.getElementById('logout-form').submit();">
                                 Выйти
                             </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
@@ -38,25 +37,27 @@
                         <li class="dropdown active">
                             <a href="/" class="dropdown-toggle" data-toggle="dropdown">Главная</a>
                         </li>
-                        <li class="">
+                        <li>
                             <a href="/elements" class="dropdown-toggle" data-toggle="dropdown">Верстка</a>
                         </li>
-                        <li class="">
+                        <li>
                             <a href="/about" class="dropdown-toggle" data-toggle="dropdown">Обо мне</a>
                         </li>
-                        <li class="">
-                            <a href="/contacts" class="dropdown-toggle" data-toggle="dropdown">Обратная связь</a>
-                        </li>
-                        <li class="">
-                            <a href="/registration" class="dropdown-toggle" data-toggle="dropdown">Регистрация</a>
-                        </li>
+                        @if((Auth::check()) ? Auth::user()->is_admin : false)
+                            <li>
+                                <a href="/admin/posts/add-form" class="dropdown-toggle" data-toggle="dropdown">Добавить
+                                    пост</a>
+                            </li>
+                        @endif
+                        @guest
+                            <li>
+                                <a href="/registration" class="dropdown-toggle" data-toggle="dropdown">Регистрация</a>
+
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </nav>
-            <div class="hidden-xs hidden-sm">
-                <a href="#" class="search__container  js--toggle-search-mode"> <span
-                            class="glyphicon  glyphicon-search"></span> </a>
-            </div>
         </div>
     </header>
 @endsection

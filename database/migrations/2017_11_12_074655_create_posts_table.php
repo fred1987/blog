@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('headline');
+            $table->string('headline')->unique();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')
@@ -26,6 +26,8 @@ class CreatePostsTable extends Migration
             $table->text('preview_text')->nullable();
             $table->boolean('is_active')->default(1);
             $table->text('detail_text');
+            $table->boolean('is_favorite')->default(0);
+            $table->string('slug')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

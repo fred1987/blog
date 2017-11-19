@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterFormRequest;
-use App\Profile;
-use App\User;
+use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,8 @@ class AuthController extends Controller
         // создадим пользователя
         $user = User::create([
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('pswd'))
+            'password' => bcrypt($request->input('pswd')),
+            'is_admin' => ($request->is_admin === 'on')
         ]);
 
         // создадим его профайл
@@ -67,5 +69,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('main');
     }
-
 }

@@ -49,6 +49,10 @@
                                     @endif
                                 </div>
                                 <div class="col-xs-12">
+                                    <p><input type="checkbox" name="is_admin" id="is_admin">
+                                        <label for="is_admin">Сделать меня админом</label></p>
+                                </div>
+                                <div class="col-xs-12">
                                     <input type="submit" value="Отправить">
                                 </div>
                                 {{ csrf_field() }}

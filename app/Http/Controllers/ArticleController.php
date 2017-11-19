@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Includes\Interfaces\CoffeeMachineInterface;
-use App\Post;
-use App\Tag;
-use Illuminate\Http\Request;
+use App\Models\Post;
 
 class ArticleController extends Controller
 {
@@ -17,20 +15,12 @@ class ArticleController extends Controller
         $this->coffeeMachine = $coffeeMachine;
     }
 
-    public function detail(int $id)
+    public function detail(Post $post)
     {
-        //приготовим кофе
-        $this->coffeeMachine->makeCoffee(3);
-
-        //текущий пост
-        $post = Post::where('id', $id)->first();
-
         return view('pages.post', [
-            'title' => 'Детальная страница поста',
+            'title' => $post->name,
             'post' => $post,
-            'comments' => $post->comments,
-            'tags' => $post->tags,
-            'coffee' => $this->coffeeMachine->getCoffee()
+            'tags' => $post->tags
         ]);
     }
 }

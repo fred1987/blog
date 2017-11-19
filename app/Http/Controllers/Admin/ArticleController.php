@@ -18,6 +18,9 @@ class ArticleController extends Controller
 
     public function addForm(Request $request)
     {
+
+        $this->authorize('admin', Post::class);
+
         $data = ($request->has('id')) ? Post::find($request->id) : null;
 
         return view('pages.create_post', [
@@ -28,6 +31,8 @@ class ArticleController extends Controller
 
     public function delete(Request $request)
     {
+        $this->authorize('admin', Post::class);
+
         if ($request->has('id')) {
             Post::find($request->id)->delete();
             return redirect('/');
@@ -38,6 +43,7 @@ class ArticleController extends Controller
 
     public function create(ArticleRequest $request)
     {
+        $this->authorize('admin', Post::class);
 
         // не завелось пока
 //        if ($request->hasFile('preview_img')) {
@@ -51,7 +57,6 @@ class ArticleController extends Controller
             'detail_text' => $request->detail_text,
             'slug' => translit($request->headline),
             'user_id' => Auth::id(),
-
         ]);
 
         if ($post) {
@@ -63,7 +68,9 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request)
     {
-        $post = Post::find($request->id)->update([
+        $this->authorize('admin', Post::class);
+
+        Post::find($request->id)->update([
             'headline' => $request->headline,
             'preview_text' => $request->preview_text,
             'detail_text' => $request->detail_text,

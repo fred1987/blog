@@ -1,7 +1,7 @@
 <template>
     <div class="comments">
-        <h6>Комментарии</h6>
-        <hr>
+        <h6 v-if="comments.length > 0">Комментарии</h6>
+        <hr v-if="comments.length > 0">
         <comment v-for="cmt in comments" :cmt="cmt" :key="cmt.id"></comment>
         <div class="row" v-if="auth">
             <div class="col-xs-12">
@@ -16,7 +16,6 @@
             <p><a href="/login">Авторизуйтесь</a>, чтобы писать комментарии</p>
         </div>
     </div>
-
 </template>
 
 <script>

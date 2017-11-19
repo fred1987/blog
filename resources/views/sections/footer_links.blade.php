@@ -17,9 +17,7 @@
                     <hr>
                     <ul class="navigation">
                         <li><a href="/">Домашняя</a></li>
-                        <li><a href="/elements">Статьи</a></li>
                         <li><a href="/about">Обо мне</a></li>
-                        <li><a href="/contacts">Обратная связь</a></li>
                     </ul>
                 </nav>
             </div>

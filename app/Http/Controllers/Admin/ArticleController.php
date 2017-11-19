@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 class ArticleController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function addForm(Request $request)
     {
         $data = ($request->has('id')) ? Post::find($request->id) : null;
@@ -27,7 +32,7 @@ class ArticleController extends Controller
             Post::find($request->id)->delete();
             return redirect('/');
         } else {
-            return 'Поста с таким id не существует';
+            return 'Передайте id для удаления поста';
         }
     }
 

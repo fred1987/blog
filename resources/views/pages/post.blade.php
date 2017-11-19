@@ -16,7 +16,7 @@
                                 <div class="meta__info">
                                     <span class="meta__date">
                                         <span class="glyphicon glyphicon-calendar"></span>
-                                        {{ $post->created_at }}
+                                        {{ getRusDate($post->created_at) }}
                                     </span>
                                 </div>
                             </div>

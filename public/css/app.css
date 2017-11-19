@@ -6998,10 +6998,6 @@ body {
     width: 50px;
 }
 
-.comment .comment-body {
-    margin-left: 60px;
-}
-
 .comment .comment-text {
     padding: 10px 0 15px;
     border-bottom: 1px solid #ccc;
@@ -7016,4 +7012,45 @@ body {
     width: 300px;
     height: 300px;
     z-index: 15000;
+}
+
+.addForm .file_img_wrap {
+    position: relative;
+    height: 30px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.addForm input[type="file"] {
+    border: none;
+    width: 225px;
+    height: 30px;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.addForm .btn_img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+    display: block;
+    width: 225px;
+    height: 30px;
+    border-radius: 3px;
+    z-index: 5;
+    cursor: pointer;
+    background: #2e9fe2;
+}
+
+.addForm #imgWrap img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
 }

@@ -20,7 +20,13 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-xs-12  col-sm-4"></div>
+                            <div class="col-xs-12  col-sm-4">
+                                <p>Связано с разделами:
+                                    @foreach($post->sections as $section)
+                                        <a href="/?section={{ $section->slug }}">{{ $section->name }}</a>
+                                    @endforeach
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -30,8 +36,6 @@
             <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 push-down-60">
                 <div class="post-content">
                     <h1>{{ $post->headline }}</h1>
-                    <h3>{{ $coffee }}</h3>
-                    <h3>Пользователей - {{ $userCount }}</h3>
                     {{ $post->detail_text }}
                 </div>
                 @include('sections.post_tags')

@@ -43,12 +43,12 @@
                         <li>
                             <a href="/about" class="dropdown-toggle" data-toggle="dropdown">Обо мне</a>
                         </li>
-                        @if((Auth::check()) ? Auth::user()->is_admin : false)
+                        @can('create', \App\Models\Post::class)
                             <li>
                                 <a href="/admin/posts/add-form" class="dropdown-toggle" data-toggle="dropdown">Добавить
                                     пост</a>
                             </li>
-                        @endif
+                        @endcan
                         @guest
                             <li>
                                 <a href="/registration" class="dropdown-toggle" data-toggle="dropdown">Регистрация</a>

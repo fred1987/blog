@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class Section extends Model
 
     public function posts()
     {
-        return $this->belongsToMany('App\Post');
+        return $this->belongsToMany(Post::class);
     }
 }

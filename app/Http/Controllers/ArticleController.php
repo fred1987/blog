@@ -17,8 +17,11 @@ class ArticleController extends Controller
 
     public function detail(Post $post)
     {
+
+        //как сделать кеширование или применить with, если используется внедрение модели????
+
         return view('pages.post', [
-            'title' => $post->name,
+            'title' => $post->headline,
             'post' => $post,
             'tags' => $post->tags
         ]);

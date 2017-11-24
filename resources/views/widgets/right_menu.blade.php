@@ -6,7 +6,7 @@
                 @foreach($articleSections as $elem)
                     <li>
                         <a href="/?section={{ $elem['slug'] }}">{{ $elem['name'] }} <span
-                                    class="widget-categories__text">{{ $elem['count'] }}</span></a>
+                                    class="widget-categories__text">{{ $elem['posts_count'] }}</span></a>
                     </li>
                 @endforeach
             </ul>

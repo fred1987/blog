@@ -19,8 +19,6 @@
 </template>
 
 <script>
-    import CommentService from '../CommentService'
-
     export default {
         props: ['post_id'],
         data() {
@@ -54,9 +52,12 @@
             }
         },
         mounted() {
-            CommentService.$on('comment.added', (comment) => {
-                this.comments.push(comment);
-            });
+            let post_id = this.post_id;
+            let comments = this.comments;
+            Echo.channel(`post.comments.${post_id}`)
+                .listen('CommentAdd', e => {
+                    this.comments.push(e);
+                });
         }
     }
 </script>

@@ -4,24 +4,18 @@ namespace App\Http\ViewComposers;
 
 use App\Models\Tag;
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Cache;
 
 class TagComposer
 {
 
-    private $tags = [];
+    private $tags;
 
     public function __construct()
     {
-        $tags = Tag::all();
-
-        foreach ($tags as $tag) {
-            $this->tags[] = [
-                'name' => $tag->name,
-                'slug' => $tag->slug
-            ];
-
-        }
+        $this->tags = Cache::remember('tags', env('CACHE_TIME', 0), function () {
+            return Tag::all();
+        });
     }
 
     public function compose(View $view)

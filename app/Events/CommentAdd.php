@@ -25,13 +25,13 @@ class CommentAdd implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new PresenceChannel('post.comments');
+        //транслируем событие добавления комментария всем пользователям
+        //для появления комментария у всех пользователей без перезагрузки стр
+        return new Channel('post.comments.' . $this->comment->post->id);
     }
 
     public function broadcastWith()
     {
-        //pusher почему то работает только с аутентифицированными пользователями
-        //без аутентификации выдает ошибку в консоли браузера 403(доступ запрещен)
         return $this->comment->toArray();
     }
 }

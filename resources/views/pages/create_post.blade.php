@@ -24,7 +24,7 @@
                             <div class="col-xs-12">
                                 <div id="imgWrap">
                                     @if(isset($data->preview_img))
-                                        <img src="{{ $data->preview_text }}" alt="preview image">
+                                        <img src="{{ $data->preview_img }}" alt="preview image">
                                     @endif
                                 </div>
                                 <div class="file_img_wrap">

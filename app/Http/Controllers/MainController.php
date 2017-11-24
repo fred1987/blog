@@ -24,15 +24,21 @@ class mainController extends Controller
         //тут конечно стоит придумать чтто-то более нормальное
         if ($request->isMethod('post')) abort(403);
         if ($request->tag) {
-            $posts = Post::where('is_active', true)->whereHas('tags', function ($q) {
+            $posts = Post::withCount('comments')->with(['user' => function ($q) {
+                $q->with('profile');
+            }])->where('is_active', true)->whereHas('tags', function ($q) {
                 $q->where('slug', request('tag'));
             })->latest()->get();
         } elseif ($request->section) {
-            $posts = Post::where('is_active', true)->whereHas('sections', function ($q) {
+            $posts = Post::withCount('comments')->with(['user' => function ($q) {
+                $q->with('profile');
+            }])->where('is_active', true)->whereHas('sections', function ($q) {
                 $q->where('slug', request('section'));
             })->latest()->get();
         } else {
-            $posts = Post::where('is_active', true)->latest()->get();
+            $posts = Post::withCount('comments')->with(['user' => function ($q) {
+                $q->with('profile');
+            }])->where('is_active', true)->latest()->get();
         }
 
         return view('index', [
